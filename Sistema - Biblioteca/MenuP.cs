@@ -21,5 +21,16 @@ namespace Sistema___Biblioteca
         {
 
         }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            // Ocultar el formulario MenuP
+            this.Hide();
+
+            // Crear e mostrar el formulario Libros
+            Libros librosForm = new Libros();
+            librosForm.FormClosed += (s, args) => this.Close(); // Cierra la aplicación cuando se cierra el formulario Libros
+            librosForm.Show();
+        }
     }
 }
