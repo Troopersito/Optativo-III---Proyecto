@@ -71,13 +71,15 @@ namespace Sistema___Biblioteca
         private void guna2Button2_Click(object sender, EventArgs e)
         {
             Registro registroForm = new Registro();
-
-            
             registroForm.Show();
 
-            
+            MenuP menuPrincipalForm = new MenuP();
+            menuPrincipalForm.SetLoginForm(this);  // Pasa la referencia correcta del formulario de inicio de sesión
+            menuPrincipalForm.Show();
             this.Hide();
         }
+
+
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
