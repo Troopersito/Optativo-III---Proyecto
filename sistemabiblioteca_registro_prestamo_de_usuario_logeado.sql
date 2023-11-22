@@ -16,29 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `libros`
+-- Table structure for table `registro_prestamo_de_usuario_logeado`
 --
 
-DROP TABLE IF EXISTS `libros`;
+DROP TABLE IF EXISTS `registro_prestamo_de_usuario_logeado`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `libros` (
-  `Id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `registro_prestamo_de_usuario_logeado` (
+  `Id` int NOT NULL,
+  `IdLibro` int NOT NULL,
   `Titulo` varchar(255) NOT NULL,
-  `Autor` varchar(255) NOT NULL,
-  `Categoria` varchar(255) NOT NULL,
   `Nroacceso` varchar(255) NOT NULL,
+  `fechaprestamo` date NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `libros`
+-- Dumping data for table `registro_prestamo_de_usuario_logeado`
 --
 
-LOCK TABLES `libros` WRITE;
-/*!40000 ALTER TABLE `libros` DISABLE KEYS */;
-/*!40000 ALTER TABLE `libros` ENABLE KEYS */;
+LOCK TABLES `registro_prestamo_de_usuario_logeado` WRITE;
+/*!40000 ALTER TABLE `registro_prestamo_de_usuario_logeado` DISABLE KEYS */;
+/*!40000 ALTER TABLE `registro_prestamo_de_usuario_logeado` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-22 16:46:04
+-- Dump completed on 2023-11-22 16:46:03

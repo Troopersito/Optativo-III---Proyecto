@@ -214,7 +214,7 @@ namespace Sistema___Biblioteca
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1199, 646);
+            this.ClientSize = new System.Drawing.Size(1199, 661);
             this.Controls.Add(this.guna2PictureBox3);
             this.Controls.Add(this.textPass);
             this.Controls.Add(this.guna2ControlBox3);

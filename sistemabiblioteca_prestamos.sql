@@ -16,29 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `libros`
+-- Table structure for table `prestamos`
 --
 
-DROP TABLE IF EXISTS `libros`;
+DROP TABLE IF EXISTS `prestamos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `libros` (
+CREATE TABLE `prestamos` (
   `Id` int NOT NULL AUTO_INCREMENT,
+  `Idlibro` int NOT NULL,
   `Titulo` varchar(255) NOT NULL,
   `Autor` varchar(255) NOT NULL,
-  `Categoria` varchar(255) NOT NULL,
+  `Categoria` varchar(225) NOT NULL,
   `Nroacceso` varchar(255) NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `libros`
+-- Dumping data for table `prestamos`
 --
 
-LOCK TABLES `libros` WRITE;
-/*!40000 ALTER TABLE `libros` DISABLE KEYS */;
-/*!40000 ALTER TABLE `libros` ENABLE KEYS */;
+LOCK TABLES `prestamos` WRITE;
+/*!40000 ALTER TABLE `prestamos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `prestamos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

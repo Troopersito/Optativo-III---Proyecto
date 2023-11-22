@@ -138,7 +138,7 @@
             // guna2HtmlLabel3
             // 
             this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(12, 231);
+            this.guna2HtmlLabel3.Location = new System.Drawing.Point(12, 226);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
             this.guna2HtmlLabel3.Size = new System.Drawing.Size(62, 18);
             this.guna2HtmlLabel3.TabIndex = 7;
@@ -163,7 +163,7 @@
             this.guna2ComboBox1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.guna2ComboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.guna2ComboBox1.ItemHeight = 30;
-            this.guna2ComboBox1.Location = new System.Drawing.Point(173, 231);
+            this.guna2ComboBox1.Location = new System.Drawing.Point(173, 213);
             this.guna2ComboBox1.Name = "guna2ComboBox1";
             this.guna2ComboBox1.Size = new System.Drawing.Size(290, 36);
             this.guna2ComboBox1.TabIndex = 9;
@@ -192,8 +192,9 @@
             this.Guardar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.Guardar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.Guardar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.Guardar.FillColor = System.Drawing.Color.LightGray;
             this.Guardar.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.Guardar.ForeColor = System.Drawing.Color.White;
+            this.Guardar.ForeColor = System.Drawing.Color.Black;
             this.Guardar.Location = new System.Drawing.Point(871, 515);
             this.Guardar.Name = "Guardar";
             this.Guardar.Size = new System.Drawing.Size(195, 61);
