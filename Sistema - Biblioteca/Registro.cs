@@ -83,26 +83,51 @@ namespace Sistema___Biblioteca
         {
             using (MySqlConnection conexion = ConexionBD.ObtenerConexion())
             {
-                string consulta = "INSERT INTO USUARIOS (user, password) VALUES (@usuario, @contraseña)";
-
-                using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
+                try
                 {
-                    comando.Parameters.AddWithValue("@usuario", usuario);
-                    comando.Parameters.AddWithValue("@contraseña", contraseña);
+                    // Obtener el número actual de usuarios registrados
+                    int numeroUsuarios = ObtenerNumeroUsuarios(conexion);
 
-                    try
+                    // Insertar el nuevo usuario
+                    string consulta = "INSERT INTO USUARIOS (user, password) VALUES (@usuario, @contraseña)";
+                    using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
                     {
+                        comando.Parameters.AddWithValue("@usuario", usuario);
+                        comando.Parameters.AddWithValue("@contraseña", contraseña);
                         comando.ExecuteNonQuery();
-                        MessageBox.Show("Usuario registrado correctamente.");
+
+                        // Mostrar el mensaje con el número de carnet
+                        MessageBox.Show($"Usuario registrado correctamente. Tu carnet es: {numeroUsuarios + 1}");
                     }
-                    catch (MySqlException ex)
-                    {
-                        Console.WriteLine($"Error al insertar usuario: {ex.Message}");
-                        throw; // Lanzar la excepción para que el llamador la maneje
-                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine($"Error al insertar usuario: {ex.Message}");
+                    throw; // Lanzar la excepción para que el llamador la maneje
                 }
             }
         }
+
+        private int ObtenerNumeroUsuarios(MySqlConnection conexion)
+        {
+            // Consulta para obtener el número de usuarios registrados
+            string consulta = "SELECT COUNT(*) FROM USUARIOS";
+
+            using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
+            {
+                try
+                {
+                    int resultado = Convert.ToInt32(comando.ExecuteScalar());
+                    return resultado;
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine($"Error al obtener el número de usuarios: {ex.Message}");
+                    throw; // Lanzar la excepción para que el llamador la maneje
+                }
+            }
+        }
+
 
 
         private void guna2Button1_Click(object sender, EventArgs e)

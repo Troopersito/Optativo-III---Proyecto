@@ -9,7 +9,7 @@ namespace Sistema___Biblioteca
 {
     internal class ConexionBD
     {
-        private static string connectionString = "Server=localhost;Port=3306;Database=Biblioteca;User=root;Password=1234;";
+        private static string connectionString = "Server=localhost;Port=3306;Database=biblioteca;User=root;Password=140404;";
 
 
         public static MySqlConnection ObtenerConexion()

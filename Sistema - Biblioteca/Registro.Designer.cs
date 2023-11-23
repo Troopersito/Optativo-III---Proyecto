@@ -52,7 +52,7 @@ namespace Sistema___Biblioteca
             this.guna2ControlBox2.FillColor = System.Drawing.Color.Transparent;
             this.guna2ControlBox2.IconColor = System.Drawing.Color.Black;
             this.guna2ControlBox2.Location = new System.Drawing.Point(1173, -5);
-            this.guna2ControlBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2ControlBox2.Margin = new System.Windows.Forms.Padding(4);
             this.guna2ControlBox2.Name = "guna2ControlBox2";
             this.guna2ControlBox2.Size = new System.Drawing.Size(48, 46);
             this.guna2ControlBox2.TabIndex = 11;
@@ -66,7 +66,7 @@ namespace Sistema___Biblioteca
             this.guna2ControlBox3.FillColor = System.Drawing.Color.Transparent;
             this.guna2ControlBox3.IconColor = System.Drawing.Color.Black;
             this.guna2ControlBox3.Location = new System.Drawing.Point(1129, -9);
-            this.guna2ControlBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2ControlBox3.Margin = new System.Windows.Forms.Padding(4);
             this.guna2ControlBox3.Name = "guna2ControlBox3";
             this.guna2ControlBox3.Size = new System.Drawing.Size(48, 49);
             this.guna2ControlBox3.TabIndex = 13;
@@ -78,7 +78,7 @@ namespace Sistema___Biblioteca
             this.guna2Button1.AutoRoundedCorners = true;
             this.guna2Button1.BackColor = System.Drawing.Color.Transparent;
             this.guna2Button1.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.guna2Button1.BorderRadius = 15;
+            this.guna2Button1.BorderRadius = 21;
             this.guna2Button1.BorderThickness = 1;
             this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -87,10 +87,10 @@ namespace Sistema___Biblioteca
             this.guna2Button1.FillColor = System.Drawing.Color.White;
             this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button1.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button1.Location = new System.Drawing.Point(635, 431);
-            this.guna2Button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2Button1.Location = new System.Drawing.Point(629, 536);
+            this.guna2Button1.Margin = new System.Windows.Forms.Padding(4);
             this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(143, 33);
+            this.guna2Button1.Size = new System.Drawing.Size(143, 44);
             this.guna2Button1.TabIndex = 15;
             this.guna2Button1.Text = "Register";
             this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
@@ -101,7 +101,7 @@ namespace Sistema___Biblioteca
             this.guna2Button2.AutoRoundedCorners = true;
             this.guna2Button2.BackColor = System.Drawing.Color.Transparent;
             this.guna2Button2.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.guna2Button2.BorderRadius = 15;
+            this.guna2Button2.BorderRadius = 21;
             this.guna2Button2.BorderThickness = 1;
             this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
@@ -110,10 +110,10 @@ namespace Sistema___Biblioteca
             this.guna2Button2.FillColor = System.Drawing.Color.White;
             this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button2.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button2.Location = new System.Drawing.Point(853, 431);
-            this.guna2Button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2Button2.Location = new System.Drawing.Point(1054, 536);
+            this.guna2Button2.Margin = new System.Windows.Forms.Padding(4);
             this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(143, 33);
+            this.guna2Button2.Size = new System.Drawing.Size(143, 44);
             this.guna2Button2.TabIndex = 16;
             this.guna2Button2.Text = "Back";
             this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
@@ -148,7 +148,7 @@ namespace Sistema___Biblioteca
             // 
             this.textPass.AutoRoundedCorners = true;
             this.textPass.BorderColor = System.Drawing.Color.Black;
-            this.textPass.BorderRadius = 14;
+            this.textPass.BorderRadius = 24;
             this.textPass.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textPass.DefaultText = "";
             this.textPass.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -162,13 +162,13 @@ namespace Sistema___Biblioteca
             this.textPass.IconLeft = global::Sistema___Biblioteca.Properties.Resources.Orion_lock;
             this.textPass.IconRight = global::Sistema___Biblioteca.Properties.Resources.hide;
             this.textPass.IconRightCursor = System.Windows.Forms.Cursors.Hand;
-            this.textPass.Location = new System.Drawing.Point(635, 309);
+            this.textPass.Location = new System.Drawing.Point(729, 333);
             this.textPass.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textPass.Name = "textPass";
             this.textPass.PasswordChar = '\0';
             this.textPass.PlaceholderText = "Password";
             this.textPass.SelectedText = "";
-            this.textPass.Size = new System.Drawing.Size(361, 31);
+            this.textPass.Size = new System.Drawing.Size(361, 50);
             this.textPass.TabIndex = 17;
             this.textPass.IconRightClick += new System.EventHandler(this.textPass_IconRightClick);
             this.textPass.TextChanged += new System.EventHandler(this.textPass_TextChanged);
@@ -177,7 +177,7 @@ namespace Sistema___Biblioteca
             // 
             this.guna2PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox1.Image")));
             this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(684, 1);
+            this.guna2PictureBox1.Location = new System.Drawing.Point(775, 1);
             this.guna2PictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
             this.guna2PictureBox1.Size = new System.Drawing.Size(247, 238);
@@ -189,7 +189,7 @@ namespace Sistema___Biblioteca
             // 
             this.guna2TextBox3.AutoRoundedCorners = true;
             this.guna2TextBox3.BorderColor = System.Drawing.Color.Black;
-            this.guna2TextBox3.BorderRadius = 14;
+            this.guna2TextBox3.BorderRadius = 25;
             this.guna2TextBox3.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.guna2TextBox3.DefaultText = "";
             this.guna2TextBox3.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -203,13 +203,13 @@ namespace Sistema___Biblioteca
             this.guna2TextBox3.IconLeft = global::Sistema___Biblioteca.Properties.Resources.reset_password;
             this.guna2TextBox3.IconRight = global::Sistema___Biblioteca.Properties.Resources.hide;
             this.guna2TextBox3.IconRightCursor = System.Windows.Forms.Cursors.Hand;
-            this.guna2TextBox3.Location = new System.Drawing.Point(635, 374);
+            this.guna2TextBox3.Location = new System.Drawing.Point(729, 415);
             this.guna2TextBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.guna2TextBox3.Name = "guna2TextBox3";
             this.guna2TextBox3.PasswordChar = '\0';
             this.guna2TextBox3.PlaceholderText = "Repeat Password";
             this.guna2TextBox3.SelectedText = "";
-            this.guna2TextBox3.Size = new System.Drawing.Size(361, 31);
+            this.guna2TextBox3.Size = new System.Drawing.Size(362, 52);
             this.guna2TextBox3.TabIndex = 6;
             this.guna2TextBox3.IconRightClick += new System.EventHandler(this.guna2TextBox3_IconRightClick);
             this.guna2TextBox3.TextChanged += new System.EventHandler(this.guna2TextBox3_TextChanged);
@@ -218,7 +218,7 @@ namespace Sistema___Biblioteca
             // 
             this.guna2TextBox1.AutoRoundedCorners = true;
             this.guna2TextBox1.BorderColor = System.Drawing.Color.Black;
-            this.guna2TextBox1.BorderRadius = 14;
+            this.guna2TextBox1.BorderRadius = 25;
             this.guna2TextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.guna2TextBox1.DefaultText = "";
             this.guna2TextBox1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -230,13 +230,13 @@ namespace Sistema___Biblioteca
             this.guna2TextBox1.ForeColor = System.Drawing.Color.Black;
             this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.guna2TextBox1.IconLeft = global::Sistema___Biblioteca.Properties.Resources.Orion_add_user;
-            this.guna2TextBox1.Location = new System.Drawing.Point(635, 242);
+            this.guna2TextBox1.Location = new System.Drawing.Point(728, 248);
             this.guna2TextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.guna2TextBox1.Name = "guna2TextBox1";
             this.guna2TextBox1.PasswordChar = '\0';
             this.guna2TextBox1.PlaceholderText = "User";
             this.guna2TextBox1.SelectedText = "";
-            this.guna2TextBox1.Size = new System.Drawing.Size(361, 31);
+            this.guna2TextBox1.Size = new System.Drawing.Size(361, 52);
             this.guna2TextBox1.TabIndex = 4;
             this.guna2TextBox1.TextChanged += new System.EventHandler(this.guna2TextBox1_TextChanged);
             // 
@@ -257,7 +257,7 @@ namespace Sistema___Biblioteca
             this.Controls.Add(this.guna2TextBox3);
             this.Controls.Add(this.guna2TextBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Registro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro";
