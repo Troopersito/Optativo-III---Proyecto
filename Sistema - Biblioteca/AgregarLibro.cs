@@ -1,7 +1,8 @@
-﻿// AgregarLibro.cs
+﻿
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 namespace Sistema___Biblioteca
@@ -22,6 +23,7 @@ namespace Sistema___Biblioteca
         public AgregarLibro()
         {
             InitializeComponent();
+            InitializeDataGridView();
             // Configurar el ComboBox con las categorías
             List<string> categorias = new List<string>
             {
@@ -49,12 +51,69 @@ namespace Sistema___Biblioteca
 
             guna2ComboBox1.DataSource = categorias;
         }
+        private void InitializeDataGridView()
+        {
+            dataGridView1.AllowUserToAddRows = true;
+            dataGridView1.AllowUserToDeleteRows = true;
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.ColumnHeadersVisible = true; // Ocultar encabezados de columna
+
+            // Agregar columna de botón "Seleccionar"
+            DataGridViewButtonColumn btnSeleccionar = new DataGridViewButtonColumn();
+            btnSeleccionar.Name = "Seleccionar";
+            btnSeleccionar.HeaderText = "";
+            btnSeleccionar.Text = "Seleccionar";
+            btnSeleccionar.UseColumnTextForButtonValue = true;
+            dataGridView1.Columns.Add(btnSeleccionar);
+
+            // Agregar columna de botón de eliminación
+            DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
+            btnEliminar.Name = "Eliminar";
+            btnEliminar.HeaderText = "";
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseColumnTextForButtonValue = true;
+            dataGridView1.Columns.Add(btnEliminar);
+
+            // Manejar los eventos CellContentClick
+            dataGridView1.CellContentClick += DataGridView1_CellContentClick;
+        }
+        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Verificar si se hizo clic en el botón "Eliminar"
+            if (e.ColumnIndex == dataGridView1.Columns["Eliminar"].Index && e.RowIndex >= 0)
+            {
+                // Preguntar al usuario si realmente desea eliminar la fila
+                DialogResult resultado = MessageBox.Show("¿Seguro que quieres eliminar este libro?", "Eliminar Libro",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.Yes)
+                {
+                    // Eliminar la fila del DataGridView
+                    dataGridView1.Rows.RemoveAt(e.RowIndex);
+
+                    // Verificar si el índice está dentro del rango de la lista libros
+                    if (e.RowIndex < libros.Count)
+                    {
+                        // Obtener el libro seleccionado desde la lista
+                        Libro libroSeleccionado = libros[e.RowIndex];
+
+                        // Eliminar el libro de la lista
+                        libros.RemoveAt(e.RowIndex);
+
+                        // Eliminar los datos en la base de datos
+                        EliminarEnBaseDeDatos(libroSeleccionado);
+                    }
+                }
+            }
+        }
 
         public DataGridView DataGridViewLibros
         {
             get { return dataGridView1; }
         }
-
+        private bool librosCargados = false;
         private void Agregar_Click(object sender, EventArgs e)
         {
             // Agregar el libro a la lista
@@ -66,17 +125,52 @@ namespace Sistema___Biblioteca
                 Nroacceso = guna2TextBox1.Text
             };
 
-            // Agregar la fila al DataGridView
-            dataGridView1.Rows.Add(nuevoLibro.Titulo, nuevoLibro.Autor, nuevoLibro.Categoria, nuevoLibro.Nroacceso);
-
             // Guardar los datos en la base de datos
             GuardarEnBaseDeDatos(nuevoLibro);
 
             // Agregar el nuevo libro a la lista
             libros.Add(nuevoLibro);
 
+            // Cargar los datos en el DataGridView solo si es la primera vez
+            if (!librosCargados)
+            {
+                CargarDatosDataGridView();
+                librosCargados = true;
+            }
+
             // Limpia los campos después de agregar el libro
             LimpiarCampos();
+        }
+        private void AgregarLibro_Load(object sender, EventArgs e)
+        {
+            // Cargar los datos en el DataGridView al cargar el formulario
+            CargarDatosDataGridView();
+        }
+        private void CargarDatosDataGridView()
+        {
+            try
+            {
+                using (MySqlConnection connection = ConexionBD.ObtenerConexion())
+                {
+                    string query = "SELECT Titulo, Autor, Categoria, Nroacceso FROM Libros";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                        {
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+
+                            // Asignar el DataTable al DataGridView
+                            dataGridView1.DataSource = dataTable;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void GuardarEnBaseDeDatos(Libro libro)
@@ -115,60 +209,18 @@ namespace Sistema___Biblioteca
             guna2TextBox1.Text = string.Empty;
         }
 
-        private void Editar_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                int indiceFila = dataGridView1.SelectedRows[0].Index;
-                Libro libroSeleccionado = libros[indiceFila];
-
-                using (EditarLibro editarLibroForm = new EditarLibro(libroSeleccionado))
-                {
-                    // Establecer el formulario padre como AgregarLibro
-                    editarLibroForm.Owner = this;
-
-                    // Establecer el DataGridView en EditarLibro
-                    editarLibroForm.DataGridViewLibro = dataGridView1;
-
-                    DialogResult resultado = editarLibroForm.ShowDialog();
-
-                    if (resultado == DialogResult.OK)
-                    {
-                        libros[indiceFila] = editarLibroForm.LibroEditado;
-
-                        dataGridView1.Rows[indiceFila].SetValues(
-                            editarLibroForm.LibroEditado.Titulo,
-                            editarLibroForm.LibroEditado.Autor,
-                            editarLibroForm.LibroEditado.Categoria,
-                            editarLibroForm.LibroEditado.Nroacceso
-                        );
-
-                        // Actualizar los datos en la base de datos
-                        ActualizarEnBaseDeDatos(editarLibroForm.LibroEditado);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Selecciona una fila para editar.", "Editar Libro",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
         private void Eliminar_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                int indiceFila = dataGridView1.SelectedRows[0].Index;
-
                 // Obtener el libro seleccionado desde la lista
-                Libro libroSeleccionado = libros[indiceFila];
+                Libro libroSeleccionado = libros[dataGridView1.SelectedRows[0].Index];
 
                 // Eliminar la fila del DataGridView
-                dataGridView1.Rows.RemoveAt(indiceFila);
+                dataGridView1.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
 
                 // Eliminar el libro de la lista
-                libros.RemoveAt(indiceFila);
+                libros.Remove(libroSeleccionado);
 
                 // Eliminar los datos en la base de datos
                 EliminarEnBaseDeDatos(libroSeleccionado);
@@ -179,6 +231,7 @@ namespace Sistema___Biblioteca
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
 
         private void ActualizarEnBaseDeDatos(Libro libro)
         {
@@ -242,9 +295,12 @@ namespace Sistema___Biblioteca
             librosForm.Show();
         }
 
-        private void AgregarLibro_Load(object sender, EventArgs e)
-        {
+        
 
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            
         }
     }
 }

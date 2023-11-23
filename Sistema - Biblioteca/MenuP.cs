@@ -12,6 +12,9 @@ namespace Sistema___Biblioteca
 {
     public partial class MenuP : Form
     {
+        public int LoggedInUserId { get; set; }
+
+
         private Login loginForm;
         public MenuP()
         {
@@ -57,10 +60,37 @@ namespace Sistema___Biblioteca
 
                 // Cierra el formulario actual
                 this.Close();
+
+                // Reinicia la aplicación
+                Application.Restart();
             }
             // Si el usuario elige "No", no hacemos nada
         }
 
 
+        private void Clientesbutton_Click(object sender, EventArgs e)
+        {
+            
+                // Hide the current form (MenuP)
+                this.Hide();
+
+                // Create and show the accionesclientes form
+                accionesclientes accionesClientesForm = new accionesclientes();
+                accionesClientesForm.FormClosed += (s, args) => this.Close(); // Close the application when accionesclientes form is closed
+                accionesClientesForm.Show();
+            
+
+        }
+
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+            // Hide the current form (MenuP)
+            this.Hide();
+
+            // Show the accionesprestamos form
+            accionesprestamos accionesPrestamosForm = new accionesprestamos();
+            accionesPrestamosForm.FormClosed += (s, args) => this.Close(); // Close the application when accionesprestamos form is closed
+            accionesPrestamosForm.Show();
+        }
     }
 }

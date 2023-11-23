@@ -1,19 +1,15 @@
-﻿using Guna.UI2.WinForms;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sistema___Biblioteca
 {
     public partial class Login : Form
     {
+        // Add a property to store the logged-in user's ID
+        
+
         public Login()
         {
             InitializeComponent();
@@ -21,31 +17,16 @@ namespace Sistema___Biblioteca
 
         private void guna2TextBox2_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void guna2ToggleSwitch1_CheckedChanged_1(object sender, EventArgs e)
         {
-           
-        }
-
-        private void guna2ToggleSwitch1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void textPass_IconRightClick(object sender, EventArgs e)
         {
-           
-
             if (textPass.UseSystemPasswordChar)
             {
-                
                 textPass.IconRight = Properties.Resources.view;
                 textPass.UseSystemPasswordChar = false;
             }
@@ -53,8 +34,6 @@ namespace Sistema___Biblioteca
             {
                 textPass.IconRight = Properties.Resources.hide;
                 textPass.UseSystemPasswordChar = true;
-                
-                
             }
         }
 
@@ -65,7 +44,6 @@ namespace Sistema___Biblioteca
 
         private void guna2PictureBox2_Click(object sender, EventArgs e)
         {
-
         }
 
         private void guna2Button2_Click(object sender, EventArgs e)
@@ -73,14 +51,9 @@ namespace Sistema___Biblioteca
             Registro registroForm = new Registro();
             registroForm.Show();
 
-            MenuP menuPrincipalForm = new MenuP();
-            menuPrincipalForm.SetLoginForm(this);  // Pasa la referencia correcta del formulario de inicio de sesión
-            menuPrincipalForm.Show();
             this.Hide();
         }
-
-
-
+        public int LoggedInUserId { get; private set; }
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             string nombreUsuario = textUsername.Text;
@@ -100,6 +73,9 @@ namespace Sistema___Biblioteca
                 // Crear una instancia del formulario MenuP
                 MenuP menuPrincipalForm = new MenuP();
 
+                // Set the logged-in user's ID in the MenuP form
+                menuPrincipalForm.LoggedInUserId = GetLoggedInUserId(nombreUsuario);
+
                 // Mostrar el formulario MenuP
                 menuPrincipalForm.Show();
 
@@ -112,32 +88,59 @@ namespace Sistema___Biblioteca
             }
         }
 
-
         private bool VerificarCredenciales(string usuario, string contraseña)
         {
-            using (MySqlConnection conexion = ConexionBD.ObtenerConexion())
+            try
             {
-                string consulta = "SELECT COUNT(*) FROM USUARIOS WHERE user = @usuario AND password = @contraseña";
-
-                using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
+                using (MySqlConnection conexion = ConexionBD.ObtenerConexion())
                 {
-                    comando.Parameters.AddWithValue("@usuario", usuario);
-                    comando.Parameters.AddWithValue("@contraseña", contraseña);
+                    string consulta = "SELECT COUNT(*) FROM USUARIOS WHERE user = @usuario AND password = @contraseña";
 
-                    try
+                    using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
                     {
+                        comando.Parameters.AddWithValue("@usuario", usuario);
+                        comando.Parameters.AddWithValue("@contraseña", contraseña);
+
                         int resultado = Convert.ToInt32(comando.ExecuteScalar());
                         return resultado > 0;
                     }
-                    catch (MySqlException ex)
-                    {
-                        Console.WriteLine($"Error al verificar credenciales: {ex.Message}");
-                        return false;
-                    }
                 }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Error al verificar credenciales: {ex.Message}");
+                return false;
             }
         }
 
+        private int GetLoggedInUserId(string usuario)
+        {
+            try
+            {
+                using (MySqlConnection conexion = ConexionBD.ObtenerConexion())
+                {
+                    string consulta = "SELECT Id FROM USUARIOS WHERE user = @usuario";
+
+                    using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@usuario", usuario);
+
+                        object result = comando.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            LoggedInUserId = Convert.ToInt32(result);
+                            return LoggedInUserId;
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"Error al obtener el ID del usuario: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return -1; // Return -1 if the ID is not found or an error occurs
+        }
     }
 }
-
