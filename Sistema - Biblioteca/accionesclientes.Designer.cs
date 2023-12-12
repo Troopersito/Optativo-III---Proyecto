@@ -44,7 +44,7 @@
             this.misprestamosButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.misprestamosButton1.ForeColor = System.Drawing.Color.Black;
             this.misprestamosButton1.Location = new System.Drawing.Point(183, 310);
-            this.misprestamosButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.misprestamosButton1.Margin = new System.Windows.Forms.Padding(4);
             this.misprestamosButton1.Name = "misprestamosButton1";
             this.misprestamosButton1.Size = new System.Drawing.Size(295, 76);
             this.misprestamosButton1.TabIndex = 0;
@@ -61,11 +61,11 @@
             this.facturasmoraButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.facturasmoraButton1.ForeColor = System.Drawing.Color.Black;
             this.facturasmoraButton1.Location = new System.Drawing.Point(624, 310);
-            this.facturasmoraButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.facturasmoraButton1.Margin = new System.Windows.Forms.Padding(4);
             this.facturasmoraButton1.Name = "facturasmoraButton1";
             this.facturasmoraButton1.Size = new System.Drawing.Size(295, 76);
             this.facturasmoraButton1.TabIndex = 1;
-            this.facturasmoraButton1.Text = "Facturas por mora";
+            this.facturasmoraButton1.Text = "Facturacion";
             this.facturasmoraButton1.Click += new System.EventHandler(this.facturasmoraButton1_Click);
             // 
             // atrasbutton
@@ -79,7 +79,7 @@
             this.atrasbutton.ForeColor = System.Drawing.Color.White;
             this.atrasbutton.Image = ((System.Drawing.Image)(resources.GetObject("atrasbutton.Image")));
             this.atrasbutton.Location = new System.Drawing.Point(13, 17);
-            this.atrasbutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.atrasbutton.Margin = new System.Windows.Forms.Padding(4);
             this.atrasbutton.Name = "atrasbutton";
             this.atrasbutton.Size = new System.Drawing.Size(91, 64);
             this.atrasbutton.TabIndex = 2;
@@ -94,7 +94,7 @@
             this.Controls.Add(this.facturasmoraButton1);
             this.Controls.Add(this.misprestamosButton1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "accionesclientes";
             this.ResumeLayout(false);
 

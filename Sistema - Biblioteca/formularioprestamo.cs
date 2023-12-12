@@ -1,6 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Data;
 using System.Windows.Forms;
 
 namespace Sistema___Biblioteca
@@ -26,22 +25,27 @@ namespace Sistema___Biblioteca
             categoriaComboBox1.Items.AddRange(categories);
         }
 
-      
-        private void RealizarPrestamo(string idLibro, string titulo, string autor, string categoria, string nroAcceso)
+        private void RealizarPrestamo(string idUsuario, string idLibro, string titulo, string autor, string categoria, string nroAcceso)
         {
             try
             {
                 using (MySqlConnection connection = ConexionBD.ObtenerConexion())
                 {
-                    string query = "INSERT INTO prestamos (Idlibro, Titulo, Autor, Categoria, Nroacceso) " +
-                                   "VALUES (@IdLibro, @Titulo, @Autor, @Categoria, @NroAcceso)";
+                    string query = "INSERT INTO prestamos (Id, Idlibro, Titulo, Autor, Categoria, Nroacceso, fechadeprestamo) " +
+                                   "VALUES (@IdUsuario, @IdLibro, @Titulo, @Autor, @Categoria, @NroAcceso, @FechaPrestamo)";
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
+                        // Assuming IdUsuario is an INT, modify the data type accordingly
+                        command.Parameters.AddWithValue("@IdUsuario", Convert.ToInt32(idUsuario));
                         command.Parameters.AddWithValue("@IdLibro", idLibro);
                         command.Parameters.AddWithValue("@Titulo", titulo);
                         command.Parameters.AddWithValue("@Autor", autor);
                         command.Parameters.AddWithValue("@Categoria", categoria);
                         command.Parameters.AddWithValue("@NroAcceso", nroAcceso);
+
+                        // Obtain the current date and time for the loan
+                        DateTime fechaPrestamo = DateTime.Now;
+                        command.Parameters.AddWithValue("@FechaPrestamo", fechaPrestamo);
 
                         command.ExecuteNonQuery();
                         MessageBox.Show("Préstamo realizado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -88,38 +92,18 @@ namespace Sistema___Biblioteca
         {
             try
             {
-                using (MySqlConnection connection = ConexionBD.ObtenerConexion())
-                {
-                    // Obtener los valores de los controles TextBox y ComboBox
-                    int idLibro = Convert.ToInt32(idlibroTextBox2.Text);
-                    string titulo = tituloTextBox3.Text;
-                    string autor = autorTextBox4.Text;
-                    string categoria = categoriaComboBox1.SelectedItem.ToString();
-                    string nroacceso = numeroaccesoTextBox6.Text;
+                // Assuming you have a method to get the user ID
+                string userId = GetUserId(); // Implement GetUserId() according to your application logic
 
-                    // Obtener la fecha actual
-                    DateTime fechaPrestamo = DateTime.Now;
+                // Obtener los valores de los controles TextBox y ComboBox
+                int idLibro = Convert.ToInt32(idlibroTextBox2.Text);
+                string titulo = tituloTextBox3.Text;
+                string autor = autorTextBox4.Text;
+                string categoria = categoriaComboBox1.SelectedItem.ToString();
+                string nroacceso = numeroaccesoTextBox6.Text;
 
-                    string query = "INSERT INTO prestamos (Idlibro, Titulo, Autor, Categoria, Nroacceso, fechadeprestamo) " +
-                                   "VALUES (@IdLibro, @Titulo, @Autor, @Categoria, @Nroacceso, @FechaPrestamo)";
-
-                    using (MySqlCommand command = new MySqlCommand(query, connection))
-                    {
-                        // Agregar parámetros a la consulta
-                        command.Parameters.AddWithValue("@IdLibro", idLibro);
-                        command.Parameters.AddWithValue("@Titulo", titulo);
-                        command.Parameters.AddWithValue("@Autor", autor);
-                        command.Parameters.AddWithValue("@Categoria", categoria);
-                        command.Parameters.AddWithValue("@Nroacceso", nroacceso);
-                        command.Parameters.AddWithValue("@FechaPrestamo", fechaPrestamo);
-
-                        // Ejecutar la consulta
-                        command.ExecuteNonQuery();
-
-                        // Opcionalmente, puedes mostrar un mensaje de éxito
-                        MessageBox.Show("Préstamo realizado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
+                // Llamar a RealizarPrestamo con el ID de usuario
+                RealizarPrestamo(userId, idLibro.ToString(), titulo, autor, categoria, nroacceso);
             }
             catch (Exception ex)
             {
@@ -137,5 +121,12 @@ namespace Sistema___Biblioteca
             accionesPrestamosForm.FormClosed += (s, args) => this.Close(); // Close the application when accionesprestamos form is closed
             accionesPrestamosForm.Show();
         }
+
+        // Implement the GetUserId() method according to your application logic
+        private string GetUserId()
+        {
+            return idusuarioTextBox1.Text;
+        }
     }
 }
+

@@ -34,7 +34,7 @@ namespace Sistema___Biblioteca
             this.Hide();
 
             // Create and show the Factura form
-            factura facturaForm = new factura();
+            Factura facturaForm = new Factura();
             facturaForm.FormClosed += (s, args) => this.Close(); // Close the application when Factura form is closed
             facturaForm.Show();
         }
