@@ -37,8 +37,6 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,9 +79,7 @@
             this.Column1,
             this.Column2,
             this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6});
+            this.Column4});
             this.dataGridView1.Location = new System.Drawing.Point(129, 72);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
@@ -93,45 +89,31 @@
             // 
             // Column1
             // 
-            this.Column1.HeaderText = "Nombre";
+            this.Column1.HeaderText = "Libro";
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
-            this.Column1.Width = 125;
+            this.Column1.Width = 150;
             // 
             // Column2
             // 
-            this.Column2.HeaderText = "Apellido";
+            this.Column2.HeaderText = "Cantidad";
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
             this.Column2.Width = 125;
             // 
             // Column3
             // 
-            this.Column3.HeaderText = "CI";
+            this.Column3.HeaderText = "Monto";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
             this.Column3.Width = 125;
             // 
             // Column4
             // 
-            this.Column4.HeaderText = "Libro";
+            this.Column4.HeaderText = "Nombre";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
             this.Column4.Width = 125;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Fecha";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 125;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Monto";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 125;
             // 
             // Factura
             // 
@@ -160,7 +142,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
     }
 }
